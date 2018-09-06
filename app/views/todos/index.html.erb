@@ -1,0 +1,11 @@
+<div class="well">
+	<% @todos.each do |todo| %>
+		 <%= todo.description %>
+		 <%= todo.completed %>
+		 <%= link_to "Mostrar", todo %>
+		 <%= link_to "Editar", todo %>
+		 <%= link_to "borrar", todo, method: :delete %>
+
+	<% end %>
+	<%= link_to "Crear", todos_new_path %>
+</div>
