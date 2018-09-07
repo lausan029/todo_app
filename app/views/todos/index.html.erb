@@ -1,11 +1,20 @@
+<h1>Index</h1>
 <div class="well">
+	<table class="table">
+	<tr>
+    <th>Description</th>
+    <th>Completed</br></th>
+  </tr >
 	<% @todos.each do |todo| %>
-		 <%= todo.description %>
-		 <%= todo.completed %>
-		 <%= link_to "Mostrar", todo %>
-		 <%= link_to "Editar", todo %>
-		 <%= link_to "borrar", todo, method: :delete %>
-
+	<tr>
+		 <td><%= todo.description %></td>
+		 <td><%= todo.completed %></td>
+		 <td><%= link_to "Mostrar", todo, class: "btn btn-primary" %></td>
+		 <td><%= link_to "Editar", edit_path(todo), class: "btn btn-info" %></td>
+		 <td><%= link_to "Complete", complete_path(todo), class: "btn btn-success" %></td>
+		 <td><%= link_to "Borrar", todo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning"  %></td>
+	</tr>
 	<% end %>
-	<%= link_to "Crear", todos_new_path %>
+	</table>
+	<%= link_to "Crear", todos_new_path, class: "btn btn-primary" %>
 </div>

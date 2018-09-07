@@ -18,16 +18,32 @@ class TodosController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:id])
+		@todo = Todo.find(params[:id])
  	end
 
  	def update
-		 @todo.update(todo_params)
-		 redirect_to todos_path
+ 	 @todo = Todo.find(params[:id])	
+	 @todo.update(todo_params)
+	 redirect_to todos_path
  	end
+
  	def destroy
+ 		@todo = Todo.find(params[:id])
  		@todo.destroy
  		redirect_to todos_path
+ 	end
+
+ 	def complete
+ 		@todo = Todo.find(params[:id])
+ 		@todo.completed = true
+ 		@todo.save
+ 		redirect_to todos_path
+ 	end
+
+ 	def list
+ 		@todos = Todo.all
+ 		@completados = Todo.where(completed: true)
+ 		@no_completados = Todo.where(completed: false)
  	end
 
 	private
